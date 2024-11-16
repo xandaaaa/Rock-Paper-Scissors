@@ -10,7 +10,7 @@ cap = cv2.VideoCapture(0)
 cap.set(3, WCAM)
 cap.set(4, HCAM)
 
-# Init handDetector class
+# Initialise handDetector class
 detector = handDetector()
 
 # Detect current move (Paper, Scissor or Rock)
