@@ -17,3 +17,4 @@ pip install opencv mediapipe
 
 ```
 brew install gstreamer
+```

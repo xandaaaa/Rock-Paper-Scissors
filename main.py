@@ -6,7 +6,7 @@ from handdetection import handDetector
 WCAM, HCAM = 1320, 720
 
 # Set camera settings
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cap.set(3, WCAM)
 cap.set(4, HCAM)
 
@@ -119,7 +119,7 @@ while cap.isOpened():
 
         # Display user's choice, computer's choice and winner and further instructions
         cv2.putText(frame, f'User: {user_choice}', (50, 80), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
-        cv2.putText(frame, f'Computer: {comp_choice}', (950, 80), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 255), 2)
+        cv2.putText(frame, f'Computer: {comp_choice}', (930, 80), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 255), 2)
         cv2.putText(frame, winner, (560, 360), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 0), 2)
         cv2.putText(frame, "Press SPACE to play again or ESC to quit", (300, 680), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
