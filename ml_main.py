@@ -2,10 +2,15 @@ import cv2
 import random
 import time
 from handdetection import handDetector
+import pickle
+
+# Load model
+with open("gesture_model.pkl", "rb") as file:
+    model = pickle.load(file)
 
 WCAM, HCAM = 1320, 720
 
-# Set camera settings
+# Camera settings
 cap = cv2.VideoCapture(1)
 cap.set(3, WCAM)
 cap.set(4, HCAM)
@@ -13,20 +18,17 @@ cap.set(4, HCAM)
 # Initialise handDetector class
 detector = handDetector()
 
-# Detect current move (Paper, Scissor or Rock)
+# Detect current move
 def move(frame):
-
     frame = detector.findhands(frame)
     coords, _ = detector.findPos(frame)
 
     if len(coords) > 0:
-        if (coords[8][2] < coords[6][2] and coords[12][2] < coords[10][2] and 
-            coords[16][2] < coords[14][2] and coords[20][2] < coords[18][2]):
-            return "Paper"
-        elif (coords[8][2] < coords[6][2] and coords[12][2] < coords[10][2]):
-            return "Scissors"
-        else:
-            return "Rock"
+        features = [coords[i][1] for i in range(21)] + [coords[i][2] for i in range(21)]
+
+        predicted_label = model.predict([features])[0]
+
+        return predicted_label
     return
 
 # Start signal and countdown

@@ -49,6 +49,7 @@ class handDetector():
 
         return lmList, handType
 
+
 # Testing
 def main():
 
